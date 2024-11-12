@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVNPL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <style>
+    html, body{
+        font-size: 14px;
+    }
+    .button-container {
+        display: flex;
+        align-items: center;
+        margin-left: auto; /* Pushes the button container to the right */
+    }
+    .button-container .btn {
+        padding: 0; /* Remove padding for buttons */
+        margin-left: 5px; /* Space between buttons */
+    }
+        nav {
+            border-bottom: 2px solid black;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .weight-label {
+            margin-left: 10px; /* Add some space between input and label */
+        }
+        .btn-small {
+            font-size: 0.8rem; /* Smaller font size for the button */
+            padding: 0.2rem 0.5rem; /* Smaller padding for the button */
+        }
+        .user-info {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .function-keys {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex align-items-center p-2">
+        <i class="fas fa-desktop mr-2"></i> <!-- Computer Icon -->
+        <span class="navbar-text">MAHARASHTRA VIDYUT NIGAM PVT. LTD. MVNPL</span>
+        <div class="button-container ml-auto"> <!-- Move button container to the right -->
+            <button class="btn btn-link text-dark" onclick="minimizeWindow()"><i class="fas fa-minus"></i></button>
+            <button class="btn btn-link text-dark" onclick="maximizeWindow()"><i class="fas fa-square"></i></button>
+            <button class="btn btn-link text-dark" onclick="closeWindow()"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li>
+                    <i class="fas fa-desktop mt-3"></i> <!-- Computer Icon -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="weighment.html">Weighment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="help.html">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="display_report.html">Display Report</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="d-flex align-items-center mt-2 ml-5">
+        <button class="btn btn-success btn-small mb-0" id="refresh" style="width: 80px; height: 35px;">Refresh</button>
+        <div class="row g-3 align-items-center ml-3">
+            <div class="col-auto ml-5">
+                <label for="wb" class="col-form-label">WB</label>
+            </div>
+            <div class="col-auto" style="width: 80px;">
+                <input type="text" id="wb" class="form-control" placeholder="0">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-md-4">
+            <div class="form-group row">
+                <label for="gatePassNo" class="col-sm-2 col-form-label">Gate Pass No.</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="gatePassNo" placeholder="Enter Gate Pass No.">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inOut" class="col-sm-2 col-form-label">IN/OUT</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="inOut">
+                        <option value="">Select</option>
+                        <option value="IN">IN</option>
+                        <option value="OUT">OUT</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="doNo" class="col-sm-2 col-form-label">DO No.</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="doNo">
+                        <option value="">Select</option>
+                        <option value="DO1">DO1</option>
+                        <option value="DO2">DO2</option>
+                        <option value="DO3">DO3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="supplier" class="col-sm-2 col-form-label">Supplier</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="supplier">
+                        <option value="">Select</option>
+                        <option value="Supplier1">Supplier1</option>
+                        <option value="Supplier2">Supplier2</option>
+                        <option value="Supplier3">Supplier3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="product" class="col-sm-2 col-form-label">Product</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="product">
+                        <option value="">Select</option>
+                        <option value="Product1">Product1</option>
+                        <option value="Product2">Product2</option>
+                        <option value="Product3">Product3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="qtyRemaining" class="col-sm-2 col-form-label">QTY Remaining</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="qtyRemaining" placeholder="Enter QTY Remaining">
+                </div>
+            </div>
+
+            <!-- Weight Section -->
+            <div class="form-group row">
+                <button class="btn btn-info btn-small mb-1 p-0" id="grossWeight" style="width: 80px; height: 35px;">Gross Weight</button>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="grossWeight" placeholder="Enter Gross Weight" oninput="calculateNetWeight()">
+                </div>
+                <div class="col-sm-5">
+                    <button class="btn btn-success btn-small mb-1" id="backupGrossWeight">Backup</button>
+                    <input type="datetime-local" class="form-control" id="grossWeightDateTime" placeholder="Date/Time">
+                 
+                </div>
+            </div>
+            <div class="form-group row">
+                <button class="btn btn-info btn-small mb-1 p-0" id="tareWeight" style="width: 80px; height: 35px;">Tare Weight</button>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="tareWeight" placeholder="Enter Tare Weight" oninput="calculateNetWeight()">
+                </div>
+                <div class="col-sm-5">
+                    <input type="datetime-local" class="form-control" id="tareWeightDateTime" placeholder="Date/Time">
+                </div>
+            </div>
+            <div class="form-group row">
+                <button class="btn btn-info btn-small mb-1 p-0" id="netWeight" style="width: 80px; height: 35px;">Net Weight</button>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="netWeight" placeholder="Enter Net Weight">
+                </div>
+            </div>
+            <div class="form-group row mt-1 ml-5">
+                <div class="col-sm-10">
+                    <p class="mt-4 ml-5">Weighbridge Weight Display</p>
+                    <textarea class="form-control" id="additionalComments" rows="5" placeholder="Enter any additional comments here..." style="width: 300px;"></textarea>
+                </div>
+            </div>
+        </div>
+    
+
+            <!-- Additional Fields Section -->
+            <div class="col-md-4">
+            <div class="form-group row">
+                <label for="weightDiff" class="col-sm-2 col-form-label">Weight Diff</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="weightDiff" placeholder="Enter Weight Diff">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="transporter" class="col-sm-2 col-form-label">Transporter</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="transporter">
+                        <option value="">Select</option>
+                        <option value="Transporter1">Transporter1</option>
+                        <option value="Transporter2">Transporter2</option>
+                        <option value="Transporter3">Transporter3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="sources" class="col-sm-2 col-form-label">Sources</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="sources">
+                        <option value="">Select</option>
+                        <option value="Source1">Source1</option>
+                        <option value="Source2">Source2</option>
+                        <option value="Source3">Source3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="wclGatePass" class="col-sm-2 col-form-label">WCL GatePass</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="wclGatePass" placeholder="Enter WCL GatePass">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="wclDate" class="col-sm-2 col-form-label">WCL Date</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="wclDate">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="wclOutTime" class="col-sm-2 col-form-label">WCL OutTime</label>
+                <div class="col-sm-10">
+                    <input type="time" class="form-control" id="wclOutTime">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="wclGrossWt" class="col-sm-2 col-form-label">WCL Gross Wt</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="wclGrossWt" placeholder="Enter WCL Gross Wt">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="wclTareWt" class="col-sm-2 col-form-label">WCL Tare Wt</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="wclTareWt" placeholder="Enter WCL Tare Wt">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="wcl NetWt" class="col-sm-2 col-form-label">WCL Net Wt</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="wclNetWt" placeholder="Enter WCL Net Wt">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="grade" class="col-sm-2 col-form-label">Grade</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="grade">
+                        <option value="">Select</option>
+                        <option value="Grade1">Grade1</option>
+                        <option value="Grade2">Grade2</option>
+                        <option value="Grade3">Grade3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="remarks" class="col-sm-2 col-form-label">Remarks</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="remarks">
+                        <option value="">Select</option>
+                        <option value="Remark1">Remark1</option>
+                        <option value="Remark2">Remark2</option>
+                        <option value="Remark3">Remark3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="user-info mt-5">USER LOGGED IN: RSATPAISE</div>
+    <div class="function-keys">
+      <p class="small">F1: Gross Weight F2: Tare Weight F3: New Slip F4: Cancel F5: Find F6: Pending List F7: Exit</p>
+    </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="form-group row">
+                <label for="siteName" class="col-sm-2 col-form-label">Site Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="siteName" placeholder="Enter Site Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="truckNo" class="col-sm-2 col-form-label">Truck No.</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="truckNo" placeholder="Enter Truck No.">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="panNo" class="col-sm-2 col-form-label">PAN No.</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="panNo" placeholder="Enter PAN No.">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="gstinNo" class="col-sm-2 col-form-label">GSTIN No.</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="gstinNo" placeholder="Enter GSTIN No.">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="additionalComments" rows="22" placeholder="Enter any additional comments here..." style="width: 480px;"></textarea>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <p class="font-weight-bold">Saved Successfully : Press F3 For New Entry</p>
+            <button class="btn btn-success" id="newBtn">New</button>
+            <button class="btn btn-primary ml-3" id="saveBtn">Save</button>
+            <button class="btn btn-info ml-3" id="printBtn">Print</button>
+            <button class="btn btn-danger ml-3" id="cancelBtn">Cancel</button>
+            <button class="btn btn-warning ml-3" id="findBtn">Find</button>
+            <button class="btn btn-secondary ml-3" id="pendingBtn">Pending</button>
+            <button class="btn btn-dark ml-3" id="removeBtn">Remove</button>
+        </div>
+        <hr class="border-dark">
+        <footer class="text-center mt-4">
+            <p class="font-weight-bold">
+                <span style="margin-right: 30px;">2024/11/12</span>
+                <span>DATABASE : MS SQL SERVER</span>
+            </p>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function minimizeWindow() {
+            alert("Minimize functionality is not supported in web browsers.");
+        }
+
+        function maximizeWindow() {
+            alert("Maximize functionality is not supported in web browsers.");
+        }
+
+        function closeWindow() {
+            window.close(); // This will only work if the window was opened by a script.
+        }
+        function calculateNetWeight() {
+            const grossWeight = parseFloat(document.getElementById('grossWeight').value) || 0;
+            const tareWeight = parseFloat(document.getElementById('tareWeight').value) || 0;
+            const netWeight = grossWeight - tareWeight;
+            document.getElementById('netWeight').value = netWeight.toFixed(2);
+        }
+
+        document.getElementById('refreshBtn').addEventListener('click', function() {
+            document.getElementById('gatePassNo').value = '';
+            document.getElementById('inOut').selectedIndex = 0;
+            document.getElementById('doNo').selectedIndex = 0;
+            document.getElementById('supplier').selectedIndex = 0;
+            document.getElementById('product').selectedIndex = 0;
+            document.getElementById('qtyRemaining').value = '';
+            document.getElementById('grossWeight').value = '';
+            document.getElementById('tareWeight').value = '';
+            document.getElementById('netWeight').value = '';
+            document.getElementById('grossWeightDateTime').value = '';
+            document.getElementById('tareWeightDateTime').value = '';
+            document.getElementById('weightDiff').value = '';
+            document.getElementById('transporter').selectedIndex = 0;
+            document.getElementById('sources').selectedIndex = 0;
+            document.getElementById('wclGatePass').value = '';
+            document.getElementById('wclDate').value = '';
+            document.getElementById('wclOutTime').value = '';
+            document.getElementById('wclGrossWt').value = '';
+            document.getElementById('wclTareWt').value = '';
+            document.getElementById('wclNetWt').value = '';
+            document.getElementById('grade').selectedIndex = 0;
+            document.getElementById('remarks').selectedIndex = 0;
+            document.getElementById('siteName').value = '';
+            document.getElementById('truckNo').value = '';
+            document.getElementById('panNo').value = '';
+            document.getElementById('gstinNo').value = '';
+            document.getElementById('additionalComments').value = '';
+        });
+
+        document.getElementById('newBtn').addEventListener('click', function() {
+            document.getElementById('gatePassForm').reset();
+            document.getElementById('additionalComments').value = '';
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            alert('Form saved successfully!');
+        });
+
+        document.getElementById('printBtn').addEventListener('click', function() {
+            window.print();
+        });
+
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to cancel?')) {
+                document.getElementById('gatePassForm').reset();
+                document.getElementById('additionalComments').value = '';
+            }
+        });
+
+        document.getElementById('findBtn').addEventListener('click', function() {
+            alert('Find functionality not implemented yet.');
+        });
+
+        document.getElementById('pendingBtn').addEventListener('click', function() {
+            alert('Pending functionality not implemented yet.');
+        });
+
+        document.getElementById('removeBtn').addEventListener('click', function() {
+            alert('Remove functionality not implemented yet.');
+        });
+
+        // Detect F1 and F2 key presses
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "F1") {
+                event.preventDefault(); // Prevent default F1 action
+                getGrossWeight(); // Call the gross weight function
+            } else if (event.key === "F2") {
+                event.preventDefault(); // Prevent default F2 action
+                getTareWeight(); // Call the tare weight function
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            switch (event.key) {
+                case 'F1':
+                    document.getElementById('grossWeight').focus();
+                    break;
+                case 'F2':
+                    document.getElementById('tareWeight').focus();
+                    break;
+                case 'F3':
+                    document.getElementById('newBtn').click();
+                    break;
+                case 'F4':
+                    document.getElementById('cancelBtn').click();
+                    break;
+                case 'F5':
+                    document.getElementById('findBtn').click();
+                    break;
+                case 'F6':
+                    document.getElementById('pendingBtn').click();
+                    break;
+                case 'F7':
+                    window.close(); // or any other exit functionality
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
