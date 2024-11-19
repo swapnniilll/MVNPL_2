@@ -13,6 +13,22 @@
         background-color: #e0f7fa;
     }
     
+    .flip-animation {
+        animation: flip 0.6s forwards;
+    }
+
+    @keyframes flip {
+        0% {
+            transform: rotateY(0);
+        }
+        50% {
+            transform: rotateY(180deg);
+        }
+        100% {
+            transform: rotateY(0);
+        }
+    }
+
     .button-container {
         display: flex;
         align-items: center;
@@ -47,9 +63,10 @@
     </style>
 </head>
 <body>
+    
     <div class="d-flex align-items-center p-2">
         <i class="fas fa-desktop mr-2"></i> <!-- Computer Icon -->
-        <span class="navbar-text">MAHARASHTRA VIDYUT NIGAM PVT. LTD. MVNPL</span>
+        <span class="navbar-text">HIND MAHA MINERAL LLP</span>
         <div class="button-container ml-auto"> <!-- Move button container to the right -->
             <button class="btn btn-link text-dark" onclick="minimizeWindow()"><i class="fas fa-minus"></i></button>
             <button class="btn btn-link text-dark" onclick="maximizeWindow()"><i class="fas fa-square"></i></button>
@@ -77,14 +94,15 @@
             </ul>
         </div>
     </nav>
+    <form action ="data.php" method="post">
     <div class="d-flex align-items-center mt-2 ml-5">
-        <button class="btn btn-success btn-small mb-0" id="refresh" style="width: 80px; height: 35px;">Refresh</button>
+        <button class="btn btn-success btn-small mb-0" id="refresh" onclick="clearFields()" style="width: 80px; height: 35px;">Refresh</button>
         <div class="row g-3 align-items-center ml-3">
             <div class="col-auto ml-5">
-                <label for="wb" class="col-form-label">WB</label>
+            <label for="wb" class="col-form-label">WB</label>
             </div>
             <div class="col-auto" style="width: 80px;">
-                <input type="text" id="wb" class="form-control bg-transparent" placeholder="0">
+            <input type="text" id="wb" name="wb" class="form-control bg-transparent" placeholder="0">
             </div>
         </div>
     </div>
@@ -94,13 +112,13 @@
             <div class="form-group row">
                 <label for="gatePassNo" class="col-sm-2 col-form-label">Gate Pass No.</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control bg-transparent" id="gatePassNo" placeholder="Enter Gate Pass No.">
+                    <input type="text" class="form-control bg-transparent" id="gatePassNo" name="gate_pass_no" placeholder="Enter Gate Pass No.">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inOut" class="col-sm-2 col-form-label">IN/OUT</label>
                 <div class="col-sm-10">
-                    <select class="form-control bg-transparent" id="inOut">
+                    <select class="form-control bg-transparent" id="inOut" name="in_out">
                         <option value="">Select</option>
                         <option value="IN">IN</option>
                         <option value="OUT">OUT</option>
@@ -110,7 +128,7 @@
             <div class="form-group row">
                 <label for="doNo" class="col-sm-2 col-form-label">DO No.</label>
                 <div class="col-sm-10">
-                    <select class="form-control bg-transparent" id="doNo">
+                    <select class="form-control bg-transparent" id="doNo" name="do_no">
                         <option value="">Select</option>
                         <option value="DO1">DO1</option>
                         <option value="DO2">DO2</option>
@@ -121,7 +139,7 @@
             <div class="form-group row">
                 <label for="supplier" class="col-sm-2 col-form-label">Supplier</label>
                 <div class="col-sm-10">
-                    <select class="form-control bg-transparent" id="supplier">
+                    <select class="form-control bg-transparent" id="supplier" name="supplier">
                         <option value="">Select</option>
                         <option value="Supplier1">Supplier1</option>
                         <option value="Supplier2">Supplier2</option>
@@ -132,7 +150,7 @@
             <div class="form-group row">
                 <label for="product" class="col-sm-2 col-form-label">Product</label>
                 <div class="col-sm-10">
-                    <select class="form-control bg-transparent" id="product">
+                    <select class="form-control bg-transparent" id="product" name="product">
                         <option value="">Select</option>
                         <option value="Product1">Product1</option>
                         <option value="Product2">Product2</option>
@@ -143,35 +161,36 @@
             <div class="form-group row">
                 <label for="qtyRemaining" class="col-sm-2 col-form-label">QTY Remaining</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control bg-transparent" id="qtyRemaining" placeholder="Enter QTY Remaining">
+                    <input type="number" class="form-control bg-transparent" id="qtyRemaining" name="qty_remaining" placeholder="Enter QTY Remaining">
                 </div>
             </div>
 
             <!-- Weight Section -->
             <div class="form-group row">
-                <button class="btn btn-info btn-small mb-1 p-0" id="grossWeight" style="width: 80px; height: 35px;">Gross Weight</button>
+                <button class="btn btn-info btn-small mb-1 p-0" id="grossWeightButton" style="width: 80px; height: 35px;">Gross Weight</button>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control bg-transparent" id="grossWeight" placeholder="Enter Gross Weight" oninput="calculateNetWeight()">
+                    <input type="number" class="form-control bg-transparent" id="grossWeightInput" name="gross_weight" placeholder="Enter Gross Weight" oninput="calculateNetWeight()">
                 </div>
                 <div class="col-sm-5">
                     <button class="btn btn-success btn-small mb-1" id="backupGrossWeight">Backup</button>
-                    <input type="datetime-local" class="form-control bg-transparent" id="grossWeightDateTime" placeholder="Date/Time">
-                 
+                    <input type="date" class="form-control bg-transparent" id="grossWeightDateTime" name="in_date">
+                    <input type="time" class="form-control bg-transparent" id="grossWeightDateTime" name="in_time">
                 </div>
             </div>
             <div class="form-group row">
-                <button class="btn btn-info btn-small mb-1 p-0" id="tareWeight" style="width: 80px; height: 35px;">Tare Weight</button>
+                <button class="btn btn-info btn-small mb-1 p-0" id="tareWeightButton" style="width: 80px; height: 35px;">Tare Weight</button>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control bg-transparent" id="tareWeight" placeholder="Enter Tare Weight" oninput="calculateNetWeight()">
+                    <input type="number" class="form-control bg-transparent" id="tareWeightInput" name="tare_weight" placeholder="Enter Tare Weight" oninput="calculateNetWeight()">
                 </div>
                 <div class="col-sm-5">
-                    <input type="datetime-local" class="form-control bg-transparent" id="tareWeightDateTime" placeholder="Date/Time">
+                    <input type="date" class="form-control bg-transparent" id="tareWeightDateTime" name="out_date">
+                    <input type="time" class="form-control bg-transparent" id="tareWeightDateTime" name="out_time">
                 </div>
             </div>
             <div class="form-group row">
-                <button class="btn btn-info btn-small mb-1 p-0" id="netWeight" style="width: 80px; height: 35px;">Net Weight</button>
+                <button class="btn btn-info btn-small mb-1 p-0" id="netWeightButton" style="width: 80px; height: 35px;">Net Weight</button>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control bg-transparent" id="netWeight" placeholder="Enter Net Weight">
+                    <input type="text" class="form-control bg-transparent" id="netWeightOutput" name="net_weight" placeholder="Net Weight" readonly>
                 </div>
             </div>
             <div class="form-group row mt-1 ml-5">
@@ -188,13 +207,13 @@
             <div class="form-group row">
                 <label for="weightDiff" class="col-sm-2 col-form-label">Weight Diff</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control bg-transparent" id="weightDiff" placeholder="Enter Weight Diff">
+                    <input type="text" class="form-control bg-transparent" id="weightDiff" name="weight_diff" placeholder="Enter Weight Diff">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="transporter" class="col-sm-2 col-form-label bg-transparent">Transporter</label>
                 <div class="col-sm-10">
-                    <select class="form-control bg-transparent" id="transporter">
+                    <select class="form-control bg-transparent" id="transporter" name="transporter">
                         <option value="">Select</option>
                         <option value="Transporter1">Transporter1</option>
                         <option value="Transporter2">Transporter2</option>
@@ -203,9 +222,9 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="sources" class="col-sm-2 col-form-label">Sources</label>
+                <label for="source" class="col-sm-2 col-form-label">Source</label>
                 <div class="col-sm-10">
-                    <select class="form-control bg-transparent" id="sources">
+                    <select class="form-control bg-transparent" id="source" name="source">
                         <option value="">Select</option>
                         <option value="Source1">Source1</option>
                         <option value="Source2">Source2</option>
@@ -252,7 +271,7 @@
             <div class="form-group row">
                 <label for="grade" class="col-sm-2 col-form-label">Grade</label>
                 <div class="col-sm-10">
-                    <select class="form-control bg-transparent" id="grade">
+                    <select class="form-control bg-transparent" id="grade" name="grade">
                         <option value="">Select</option>
                         <option value="Grade1">Grade1</option>
                         <option value="Grade2">Grade2</option>
@@ -263,7 +282,7 @@
             <div class="form-group row">
                 <label for="remarks" class="col-sm-2 col-form-label">Remarks</label>
                 <div class="col-sm-10">
-                    <select class="form-control bg-transparent" id="remarks">
+                    <select class="form-control bg-transparent" id="remarks" name="remarks">
                         <option value="">Select</option>
                         <option value="Remark1">Remark1</option>
                         <option value="Remark2">Remark2</option>
@@ -281,25 +300,25 @@
             <div class="form-group row">
                 <label for="siteName" class="col-sm-2 col-form-label">Site Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control bg-transparent" id="siteName" placeholder="Enter Site Name">
+                    <input type="text" class="form-control bg-transparent" id="siteName" name="site_name" placeholder="Enter Site Name">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="truckNo" class="col-sm-2 col-form-label">Truck No.</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control bg-transparent" id="truckNo" placeholder="Enter Truck No.">
+                    <input type="text" class="form-control bg-transparent" id="truckNo" name="truck_no" placeholder="Enter Truck No.">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="panNo" class="col-sm-2 col-form-label">PAN No.</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control bg-transparent" id="panNo" placeholder="Enter PAN No.">
+                    <input type="text" class="form-control bg-transparent" id="panNo" name="pan_no" placeholder="Enter PAN No.">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="gstinNo" class="col-sm-2 col-form-label">GSTIN No.</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control bg-transparent" id="gstinNo" placeholder="Enter GSTIN No.">
+                    <input type="text" class="form-control bg-transparent" id="gstinNo" name="gstin_no" placeholder="Enter GSTIN No.">
                 </div>
             </div>
             <div class="form-group row">
@@ -311,143 +330,120 @@
         </div>
         <div class="mt-4">
             <p class="font-weight-bold">Saved Successfully : Press F3 For New Entry</p>
-            <button class="btn btn-success" id="newBtn">New</button>
-            <button class="btn btn-primary ml-3" id="saveBtn">Save</button>
-            <button class="btn btn-info ml-3" id="printBtn">Print</button>
-            <button class="btn btn-danger ml-3" id="cancelBtn">Cancel</button>
-            <button class="btn btn-warning ml-3" id="findBtn">Find</button>
+            <button type="button" class="btn btn-success" id="newBtn" onclick="newEntry()">New</button>
+            <button type="submit" class="btn btn-primary ml-3" id="saveBtn" name="save">Save</button>
+            <button class="btn btn-info ml-3" id="printBtn" onclick="printData()">Print</button>
+            <button type="button" class="btn btn-danger ml-3" id="cancelBtn" onclick="clearFields()">Cancel</button>
+            <button class="btn btn-warning ml-3" id="findBtn" onclick="openSearchBox()">Find</button>
             <button class="btn btn-secondary ml-3" id="pendingBtn">Pending</button>
-            <button class="btn btn-dark ml-3" id="removeBtn">Remove</button>
+            <button type="button" class="btn btn-dark ml-3" id="removeBtn" onclick="clearFields()">Remove</button>
         </div>
         <hr class="border-dark">
         <footer class="text-center mt-4">
             <p class="font-weight-bold">
-                <span style="margin-right: 30px;">2024/11/12</span>
-                <span>DATABASE : MS SQL SERVER</span>
+                <span id="currentDate" style="margin-right: 30px;"></span>
             </p>
         </footer>
-    </div>
+    </form>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <script src="index.js"></script>
     <script>
-        function minimizeWindow() {
-            alert("Minimize functionality is not supported in web browsers.");
-        }
-
-        function maximizeWindow() {
-            alert("Maximize functionality is not supported in web browsers.");
-        }
-
-        function closeWindow() {
-            window.close(); // This will only work if the window was opened by a script.
-        }
         function calculateNetWeight() {
-            const grossWeight = parseFloat(document.getElementById('grossWeight').value) || 0;
-            const tareWeight = parseFloat(document.getElementById('tareWeight').value) || 0;
+            // Get the values from the input fields
+            const grossWeight = parseFloat(document.getElementById('grossWeightInput').value) || 0;
+            const tareWeight = parseFloat(document.getElementById('tareWeightInput').value) || 0;
+        
+            // Calculate net weight
             const netWeight = grossWeight - tareWeight;
-            document.getElementById('netWeight').value = netWeight.toFixed(2);
+        
+            // Update the net weight output field
+            document.getElementById('netWeightOutput').value = netWeight.toFixed(2); // Display with 2 decimal places
         }
 
-        document.getElementById('refreshBtn').addEventListener('click', function() {
-            document.getElementById('gatePassNo').value = '';
-            document.getElementById('inOut').selectedIndex = 0;
-            document.getElementById('doNo').selectedIndex = 0;
-            document.getElementById('supplier').selectedIndex = 0;
-            document.getElementById('product').selectedIndex = 0;
-            document.getElementById('qtyRemaining').value = '';
-            document.getElementById('grossWeight').value = '';
-            document.getElementById('tareWeight').value = '';
-            document.getElementById('netWeight').value = '';
-            document.getElementById('grossWeightDateTime').value = '';
-            document.getElementById('tareWeightDateTime').value = '';
-            document.getElementById('weightDiff').value = '';
-            document.getElementById('transporter').selectedIndex = 0;
-            document.getElementById('sources').selectedIndex = 0;
-            document.getElementById('wclGatePass').value = '';
-            document.getElementById('wclDate').value = '';
-            document.getElementById('wclOutTime').value = '';
-            document.getElementById('wclGrossWt').value = '';
-            document.getElementById('wclTareWt').value = '';
-            document.getElementById('wclNetWt').value = '';
-            document.getElementById('grade').selectedIndex = 0;
-            document.getElementById('remarks').selectedIndex = 0;
-            document.getElementById('siteName').value = '';
-            document.getElementById('truckNo').value = '';
-            document.getElementById('panNo').value = '';
-            document.getElementById('gstinNo').value = '';
-            document.getElementById('additionalComments').value = '';
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to handle keydown events
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'F1') {
+                    event.preventDefault(); // Prevent default F1 help action
+                    document.getElementById('grossWeightInput').focus(); // Focus on gross weight input
+                } else if (event.key === 'F2') {
+                    event.preventDefault(); // Prevent default action
+                    document.getElementById('tareWeightInput').focus(); // Focus on tare weight input
+                } else if (event.key === 'F3') {
+                    event.preventDefault();
+                    clearFields(); // Call refresh function
+                } else if (event.key === 'F4') {
+                    event.preventDefault();
+                    clearFields(); // Call clear function
+                } else if (event.key === 'F5') {
+                        event.preventDefault();
+                        openSearchBox();
+                } else if (event.key === 'F7') {
+                        event.preventDefault();
+                        exitPage();
+                }
+            });
         });
+ 
+        function refreshFields() {
+        // Refresh logic can be implemented here
+        // For example, you can reset the form or reload data
+        document.getElementById('grossWeightInput').value = ''; // Reset gross weight
+        document.getElementById('tareWeightInput').value = ''; // Reset tare weight
+        document.getElementById('netWeightOutput').value = ''; // Reset net weight
+        // Add any other fields you want to refresh
+    }
 
-        document.getElementById('newBtn').addEventListener('click', function() {
-            document.getElementById('gatePassForm').reset();
-            document.getElementById('additionalComments').value = '';
+        function clearFields() {
+        // Clear all input fields
+        const inputs = document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="time"], textarea');
+        inputs.forEach(input => {
+            input.value = ''; // Clear the value
         });
-
-        document.getElementById('saveBtn').addEventListener('click', function() {
-            alert('Form saved successfully!');
+        const selects = document.querySelectorAll('select');
+        selects.forEach(select => {
+            select.selectedIndex = 0; // Reset to the first option
         });
-
-        document.getElementById('printBtn').addEventListener('click', function() {
-            window.print();
-        });
-
-        document.getElementById('cancelBtn').addEventListener('click', function() {
-            if (confirm('Are you sure you want to cancel?')) {
-                document.getElementById('gatePassForm').reset();
-                document.getElementById('additionalComments').value = '';
+    }
+        
+        function openSearchBox() {
+                const doNo = prompt("Enter DO No. to search:");
+                if (doNo) {
+                    // Implement search logic here
+                    alert("Searching for DO No: " + doNo);
+                }
             }
-        });
 
-        document.getElementById('findBtn').addEventListener('click', function() {
-            alert('Find functionality not implemented yet.');
-        });
-
-        document.getElementById('pendingBtn').addEventListener('click', function() {
-            alert('Pending functionality not implemented yet.');
-        });
-
-        document.getElementById('removeBtn').addEventListener('click', function() {
-            alert('Remove functionality not implemented yet.');
-        });
-
-        // Detect F1 and F2 key presses
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "F1") {
-                event.preventDefault(); // Prevent default F1 action
-                getGrossWeight(); // Call the gross weight function
-            } else if (event.key === "F2") {
-                event.preventDefault(); // Prevent default F2 action
-                getTareWeight(); // Call the tare weight function
+        function exitPage() {
+                if (confirm("Are you sure you want to exit?")) {
+                    window.close(); // This may not work if the page was not opened via JavaScript
+                }
             }
-        });
 
-        document.addEventListener('keydown', function(event) {
-            switch (event.key) {
-                case 'F1':
-                    document.getElementById('grossWeight').focus();
-                    break;
-                case 'F2':
-                    document.getElementById('tareWeight').focus();
-                    break;
-                case 'F3':
-                    document.getElementById('newBtn').click();
-                    break;
-                case 'F4':
-                    document.getElementById('cancelBtn').click();
-                    break;
-                case 'F5':
-                    document.getElementById('findBtn').click();
-                    break;
-                case 'F6':
-                    document.getElementById('pendingBtn').click();
-                    break;
-                case 'F7':
-                    window.close(); // or any other exit functionality
-                    break;
-            }
-        });
-    </script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var today = new Date();
+        var day = String(today.getDate()).padStart(2, '0'); // Get day and ensure it's 2 digits
+        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var month = monthNames[today.getMonth()]; // Get the month name
+        var year = today.getFullYear(); // Get the full year
+
+        // Format the date as "DD-MMM-YYYY"
+        var formattedDate = day + '-' + month + '-' + year;
+        document.getElementById('currentDate').textContent = formattedDate;
+    });
+
+    function newEntry() {
+            document.body.classList.add('flip-animation');
+            setTimeout(() => {
+                clearFields();
+                document.body.classList.remove('flip-animation');
+            }, 600);
+        }
+
+</script>
+    
 </body>
 </html>
