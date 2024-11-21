@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Master</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body{
+        font-size: 14px;
+        background-color: #e0f7fa;
+    }
+        .table-editable {
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center font-weight-bolder">Transport Master</h1>
+
+    <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" class="form-control bg-transparent" id="id" placeholder="Enter ID">
+    </div>
+    <div class="form-group">
+        <label for="transporterName">Transporter Name</label>
+        <input type="text" class="form-control bg-transparent" id="transporterName" placeholder="Enter Transporter Name">
+    </div>
+    <div class="form-group">
+        <label for="transporterAddress">Transporter Address</label>
+        <input type="text" class="form-control bg-transparent" id="transporterAddress" placeholder="Enter Transporter Address">
+    </div>
+    <div class="form-group">
+        <label for="transporterEmail">Transporter Email</label>
+        <input type="email" class="form-control bg-transparent" id="transporterEmail" placeholder="Enter Transporter Email">
+    </div>
+    <div class="form-group">
+        <label for="transporterContactNo">Transporter Contact No.</label>
+        <input type="text" class="form-control bg-transparent" id="transporterContactNo" placeholder="Enter Transporter Contact No.">
+    </div>
+    <div class="form-group">
+        <label for="transporterContactPerson">Transporter Contact Person</label>
+        <input type="text" class="form-control bg-transparent" id="transporterContactPerson" placeholder="Enter Transporter Contact Person">
+    </div>
+    <div class="form-group">
+        <label for="transporterGSTNo">Transporter GST No.</label>
+        <input type="text" class="form-control bg-transparent" id="transporterGSTNo" placeholder="Enter Transporter GST No.">
+    </div>
+    <div class="form-group">
+        <label for="transporterPANNo">Transporter PAN No.</label>
+        <input type="text" class="form-control bg-transparent" id="transporterPANNo" placeholder="Enter Transporter PAN No.">
+    </div>
+    <div class="form-group">
+        <label for="siteName">Site Name</label>
+        <input type="text" class="form-control bg-transparent" id="siteName" placeholder="Enter Site Name">
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" onclick="saveTransporter()">Save</button>
+        <button class="btn btn-danger" onclick="deleteTransporter()">Delete</button>
+        <button class="btn btn-secondary" onclick="closeForm()">Close</button>
+    </div>
+
+    <h2 class="mt-5">Transporter List</h2>
+    <div class="form-group">
+        <label for="search">Search by ID</label>
+        <input type="text" class="form-control bg-transparent" id="search" placeholder="Search..." onkeyup="searchTransporter()">
+    </div>
+
+    <table class="table table-bordered mt-3 bg-transparent" id="transporterTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Transporter Name</th>
+                <th>Transporter Address</th>
+                <th>Transporter Email</th>
+                <th>Transporter Contact No.</th>
+                <th>Transporter Contact Person</th>
+                <th>Transporter GST No.</th>
+                <th>Transporter PAN No.</th>
+                <th>Site Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamic rows will be added here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4 .5.2/js/bootstrap.min.js"></script>
+
+<script>
+    const transporterData = [];
+
+    function saveTransporter() {
+        const id = document.getElementById('id').value;
+        const transporterName = document.getElementById('transporterName').value;
+        const transporterAddress = document.getElementById('transporterAddress').value;
+        const transporterEmail = document.getElementById('transporterEmail').value;
+        const transporterContactNo = document.getElementById('transporterContactNo').value;
+        const transporterContactPerson = document.getElementById('transporterContactPerson').value;
+        const transporterGSTNo = document.getElementById('transporterGSTNo').value;
+        const transporterPANNo = document.getElementById('transporterPANNo').value;
+        const siteName = document.getElementById('siteName').value;
+
+        const transporter = {
+            id,
+            transporterName,
+            transporterAddress,
+            transporterEmail,
+            transporterContactNo,
+            transporterContactPerson,
+            transporterGSTNo,
+            transporterPANNo,
+            siteName
+        };
+
+        transporterData.push(transporter);
+        renderTable();
+        clearForm();
+    }
+
+    function renderTable() {
+        const tableBody = document.getElementById('transporterTable').getElementsByTagName('tbody')[0];
+        tableBody.innerHTML = '';
+
+        transporterData.forEach((transporter, index) => {
+            const row = tableBody.insertRow();
+            Object.values(transporter).forEach((value) => {
+                const cell = row.insertCell();
+                cell.contentEditable = true; // Make cells editable
+                cell.innerText = value;
+            });
+        });
+    }
+
+    function deleteTransporter() {
+        const id = document.getElementById('id').value;
+        const index = transporterData.findIndex(transporter => transporter.id === id);
+        if (index !== -1) {
+            transporterData.splice(index, 1);
+            renderTable();
+            clearForm();
+        } else {
+            alert('Transporter not found');
+        }
+    }
+
+    function searchTransporter() {
+        const searchValue = document.getElementById('search').value.toLowerCase();
+        const filteredData = transporterData.filter(transporter => transporter.id.toLowerCase().includes(searchValue));
+        const tableBody = document.getElementById('transporterTable').getElementsByTagName('tbody')[0];
+        tableBody.innerHTML = '';
+
+        filteredData.forEach((transporter) => {
+            const row = tableBody.insertRow();
+            Object.values(transporter).forEach((value) => {
+                const cell = row.insertCell();
+                cell.contentEditable = true; // Make cells editable
+                cell.innerText = value;
+            });
+        });
+    }
+
+    function clearForm() {
+        document.getElementById('id').value = '';
+        document.getElementById('transporterName').value = '';
+        document.getElementById('transporterAddress').value = '';
+        document.getElementById('transporterEmail').value = '';
+        document.getElementById('transporterContactNo').value = '';
+        document.getElementById('transporterContactPerson').value = '';
+        document.getElementById('transporterGSTNo').value = '';
+        document.getElementById('transporterPANNo').value = '';
+        document.getElementById('siteName').value = '';
+    }
+
+    function closeForm() {
+        if (confirm('Are you sure you want to close?')) {
+            window.close(); // This will only work if the page was opened via window.open()
+        }
+    }
+</script>
+
+</body>
+</html> ⬤

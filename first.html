@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Site</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body{
+        font-size: 14px;
+        background-color: #e0f7fa;
+    }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="form-group">
+            <label for="siteSelect">Select Site</label>
+            <select class="form-control bg-transparent" id="siteSelect">
+                <option value="" disabled selected>Select a site</option>
+                <option value="site1">Site 1</option>
+                <option value="site2">Site 2</option>
+                <option value="site3">Site 3</option>
+                <option value="site4">Site 4</option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-primary" id="okBtn">OK</button>
+    </div>
+
+    <script>
+        document.getElementById('okBtn').onclick = function() {
+            const selectedSite = document.getElementById('siteSelect').value;
+            if (selectedSite) {
+                // Redirect to "Logi page.html"
+                window.location.href = 'login.html';
+            } else {
+                alert('Please select a site.');
+            }
+        };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
