@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product/Material Wise Report</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .report-box {
+            border: 3px solid #007bff; /* Bootstrap primary color */
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .input-group{
+            width: 190px;
+        }
+        .btn{
+            left: 300px;
+            bottom: 37px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="sitename">Site Name : </label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="sitename">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inout">IN/OUT</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inout">
+                </div>
+            </div>
+        </div>
+
+        <div class="report-box">
+            <h4 class="text-center">Product/Material Wise Report</h4>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fromDate">From Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="fromDate">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="toDate">To Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control w-75" id="toDate">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button">MS Excel</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="report-box">
+            <h4 class="text-center">Customer Wise Report</h4>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fromDate">From Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="fromDate">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="toDate">To Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control w-75" id="toDate">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button">MS Excel</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="report-box">
+            <h4 class="text-center">Customer/Transporter Wise Report</h4>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fromDate">From Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="fromDate">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="toDate">To Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control w-75" id="toDate">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button">MS Excel</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="report-box">
+            <h4 class="text-center">Single Customer/Transporter Wise Report</h4>
+        </div>
+            <div class="input-group-append">
+                <label class="m-4" for="nameofcustomer">Name of Customer : </label>
+                <select class="form-control w-50 m-3" id="nameofcustomer">
+                    <option value="" disabled selected>Select Customer Name</option>
+                    <option value="report1">Report 1</option>
+                    <option value="report2">Report 2</option>
+                    <option value="report3">Report 3</option>
+                </select>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fromDate">From Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="fromDate">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="toDate">To Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control w-75" id="toDate">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button">MS Excel</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="report-box">
+            <h4 class="text-center">Single Customer/Material Wise Report</h4>
+        </div>
+        <div class="input-group-append">
+            <label class="m-4" for="nameofcustomer">Name of Customer : </label>
+            <select class="form-control w-50 m-3" id="nameofcustomer">
+                <option value="" disabled selected>Select Customer Name</option>
+                <option value="report1">Report 1</option>
+                <option value="report2">Report 2</option>
+                <option value="report3">Report 3</option>
+            </select>
+    </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fromDate">From Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="fromDate">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="toDate">To Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control w-75" id="toDate">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button">MS Excel</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="report-box">
+            <h4 class="text-center">Single Material/Customer Wise Report</h4>
+        </div>
+        <div class="input-group-append">
+            <label class="m-4" for="nameofcustomer">Material : </label>
+            <select class="form-control w-50 m-3" id="nameofcustomer">
+                <option value="" disabled selected>Select Customer Name</option>
+                <option value="report1">Report 1</option>
+                <option value="report2">Report 2</option>
+                <option value="report3">Report 3</option>
+            </select>
+    </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fromDate">From Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="fromDate">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="toDate">To Date</label>
+                <div class="input-group">
+                    <input type="date" class="form-control w-75" id="toDate">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button">MS Excel</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

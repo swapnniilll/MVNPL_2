@@ -60,7 +60,37 @@
             font-size: 0.9rem;
             margin-bottom: 20px;
         }
-        
+        .nav-item {
+    position: relative; /* Required for positioning the submenu */
+}
+
+.submenu {
+    display: none; /* Hide the submenu by default */
+    position: absolute; /* Position it absolutely */
+    background-color: turquoise; /* Background color */
+    border: 1px solid #ccc; /* Optional border */
+    z-index: 1000; /* Ensure it appears above other elements */
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.nav-item:hover .submenu {
+    display: block; /* Show submenu on hover */
+}
+
+.submenu li {
+    padding: 8px 12px; /* Padding for submenu items */
+}
+
+.submenu li a {
+    color: black; /* Color of submenu links */
+    text-decoration: none; /* Remove underline */
+}
+
+.submenu li a:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+}
     </style>
 </head>
 <body>
@@ -84,13 +114,55 @@
                     <i class="fas fa-desktop mt-3"></i> <!-- Computer Icon -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Weighment</a>
+                    <a class="nav-link text-dark" href="first2.html">Weighment</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark" href="#">Customer Report</a>
+                    <ul class="submenu">
+                        <li><a class="dropdown-item" href="#">Grouping Report</a></li>
+                        <li><a class="dropdown-item" href="customer_report.html">Customer Report</a></li>
+                        <li><a class="dropdown-item" href="#">Datewise</a></li>
+                        <li><a class="dropdown-item" href="#">Ticketwise</a></li>
+                        <li><a class="dropdown-item" href="#">Truck Report</a></li>
+                        <li><a class="dropdown-item" href="destination.html">User Report</a></li>
+                        <li><a class="dropdown-item" href="#">User Log Report</a></li>
+                        <li><a class="dropdown-item" href="productwise_report.html">Product Report</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark" href="#">Supplier Report</a>
+                    <ul class="submenu">
+                        <li><a class="dropdown-item" href="#">Grouping Report</a></li>
+                        <li><a class="dropdown-item" href="supplier.html">Supplier Report</a></li>
+                        <li><a class="dropdown-item" href="#">Supplier Datewise Report</a></li>
+                        <li><a class="dropdown-item" href="productwise_report.html">Product Report</a></li>
+                        <li><a class="dropdown-item" href="#">Time Difference Report</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark" href="#">DO Report</a>
+                    <ul class="submenu">
+                        <li><a class="dropdown-item" href="#">DO WISE REPORT</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark" href="#">Transport Report</a>
+                    <ul class="submenu">
+                        <li><a class="dropdown-item" href="transport.html">Transport Wise</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link text-dark" href="#">Help</a>
+                    <ul class="submenu">
+                        <li><a class="dropdown-item" href="#">Software Guide</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     <a class="nav-link text-dark" href="#">Display Report</a>
+                    <ul class="submenu">
+                        <li><a class="dropdown-item" href="new_report.html">Report</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -338,9 +410,9 @@
             <button class="btn btn-warning ml-3" id="findBtn" onclick="openSearchBox()">Find</button>
             <button class="btn btn-secondary ml-3" id="pendingBtn">Pending</button>
             <button type="button" class="btn btn-dark ml-3" id="removeBtn" onclick="clearFields()">Remove</button>
-            <button type="button" class="btn btn-primary" id="destination">Destination Page</button>
-            <button type="button" class="btn btn-primary" id="transport">Transport Page</button>
-            <button type="button" class="btn btn-primary" id="okBtn">Supplier Page</button>
+            
+            
+            
         </div>
         <hr class="border-dark">
         <footer class="text-center mt-4">
@@ -458,6 +530,5 @@
         };
 
 </script>
-    
 </body>
 </html>

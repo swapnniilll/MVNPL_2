@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Report</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .report-box {
+            border: 3px solid #007bff; /* Bootstrap primary color */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .textarea-large {
+            height: 150px; /* Adjust the height as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="font-weight-bold text-center">Transporter Report</h1>
+        <div class="form-group">
+            <label for="inout">IN/OUT</label>
+            <select class="form-control w-25" id="inout">
+                <option value="" disabled selected>Select</option>
+                <option value="IN">IN</option>
+                <option value="OUT">OUT</option>
+            </select>
+        </div>
+
+        <div class="report-box">
+            <div class="form-group">
+                <label for="reportDropdown">Select Report Type</label>
+                <select class="form-control" id="reportDropdown">
+                    <option value="" disabled selected>Select a report type</option>
+                    <option value="report1">Report 1</option>
+                    <option value="report2">Report 2</option>
+                    <option value="report3">Report 3</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="fromDate">From Date</label>
+                    <input type="date" class="form-control" id="fromDate">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="toDate">To Date</label>
+                    <input type="date" class="form-control" id="toDate">
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" id="okBtn">OK</button>
+        </div>
+
+        <div class="form-group">
+            <label for="siteName">Site Name</label>
+            <input type="text" class="form-control" id="siteName" placeholder="Enter Site Name">
+        </div>
+
+        <div class="form-group">
+            <label for="reportDetails">Report Details</label>
+            <textarea class="form-control textarea-large" id="reportDetails" placeholder="Enter report details..."></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="totalEntry">Total Entry</label>
+                <input type="number" class="form-control" id="totalEntry">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="gross">Gross</label>
+                <input type="number" class="form-control" id="gross">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="tare">Tare</label>
+                <input type="number" class="form-control" id="tare">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="net">Net</label>
+                <input type="number" class="form-control" id="net">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="total">Total</label>
+            <input type="number" class="form-control" id="total">
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" id="closeBtn">Close</button>
+            <button type="button" class="btn btn-success" id="printReportBtn">Print Excel Report</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('okBtn').onclick = function() {
+            const reportType = document.getElementById('reportDropdown').value;
+            const fromDate = document.getElementById('fromDate').value;
+            const toDate = document.getElementById('toDate').value;
+
+            if (!reportType || !fromDate || !toDate) {
+                alert('Please fill in all fields in the Customer Report section.');
+            } else {
+                alert('Report generated successfully!'); // Placeholder for actual functionality
+            }
+        };
+
+        document.getElementById('closeBtn').onclick = function() {
+            if (confirm('Are you sure you want to close?')) {
+                window.close(); // This will only work if the page was opened via window.open()
+            }
+        };
+
+        document.getElementById('printReportBtn').onclick = function() {
+            // Placeholder for print functionality
+            alert('Print Excel Report functionality is not implemented yet.');
+        };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
