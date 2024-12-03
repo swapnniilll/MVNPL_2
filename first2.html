@@ -119,37 +119,38 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link text-dark" href="#">Customer Report</a>
                     <ul class="submenu">
-                        <li><a class="dropdown-item" href="#">Grouping Report</a></li>
+                        <li><a class="dropdown-item" href="productwise_report.html">Grouping Report</a></li>
                         <li><a class="dropdown-item" href="customer_report.html">Customer Report</a></li>
-                        <li><a class="dropdown-item" href="#">Datewise</a></li>
-                        <li><a class="dropdown-item" href="#">Ticketwise</a></li>
-                        <li><a class="dropdown-item" href="#">Truck Report</a></li>
-                        <li><a class="dropdown-item" href="destination.html">User Report</a></li>
-                        <li><a class="dropdown-item" href="#">User Log Report</a></li>
-                        <li><a class="dropdown-item" href="productwise_report.html">Product Report</a></li>
+                        <li><a class="dropdown-item" href="datewise.html">Datewise</a></li>
+                        <li><a class="dropdown-item" href="ticketwise.html">Ticketwise</a></li>
+                        <li><a class="dropdown-item" href="truck_report.html">Truck Report</a></li>
+                        <li><a class="dropdown-item" href="user_report.html">User Report</a></li>
+                        <li><a class="dropdown-item" href="userlog_report.html">User Log Report</a></li>
+                        <li><a class="dropdown-item" href="product_report.html">Product Report</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link text-dark" href="#">Supplier Report</a>
                     <ul class="submenu">
-                        <li><a class="dropdown-item" href="#">Grouping Report</a></li>
-                        <li><a class="dropdown-item" href="supplier.html">Supplier Report</a></li>
-                        <li><a class="dropdown-item" href="#">Supplier Datewise Report</a></li>
-                        <li><a class="dropdown-item" href="productwise_report.html">Product Report</a></li>
-                        <li><a class="dropdown-item" href="#">Time Difference Report</a></li>
+                        <li><a class="dropdown-item" href="grouping_2.html">Grouping Report</a></li>
+                        <li><a class="dropdown-item" href="supplier_2.html">Supplier Report</a></li>
+                        <li><a class="dropdown-item" href="supplier_datewise.html">Supplier Datewise Report</a></li>
+                        <li><a class="dropdown-item" href="product_report.html">Product Report</a></li>
+                        <li><a class="dropdown-item" href="timediff.html">Time Difference Report</a></li>
                     </ul>
                 </li>
                 
                 <li class="nav-item dropdown">
                     <a class="nav-link text-dark" href="#">DO Report</a>
                     <ul class="submenu">
-                        <li><a class="dropdown-item" href="#">DO WISE REPORT</a></li>
+                        <li><a class="dropdown-item" href="dowise.html">DO WISE REPORT</a></li>
+                        <li><a class="dropdown-item" href="do_master.html">DO Master</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link text-dark" href="#">Transport Report</a>
                     <ul class="submenu">
-                        <li><a class="dropdown-item" href="transport.html">Transport Wise</a></li>
+                        <li><a class="dropdown-item" href="transportwise.html">Transport Wise</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -161,15 +162,16 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link text-dark" href="#">Display Report</a>
                     <ul class="submenu">
-                        <li><a class="dropdown-item" href="new_report.html">Report</a></li>
+                        <li><a class="dropdown-item" href="displayreport.html">Report</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </nav>
-    <form action ="data.php" method="post">
+    
     <div class="d-flex align-items-center mt-2 ml-5">
-        <button class="btn btn-success btn-small mb-0" id="refresh" onclick="clearFields()" style="width: 80px; height: 35px;">Refresh</button>
+        <button class="btn btn-success btn-small mb-0" id="refresh" onclick="clearFields()" style="width: 80px; height: 35px; font-size: 16px;">Refresh</button>
+        <form action ="data.php" method="post">
         <div class="row g-3 align-items-center ml-3">
             <div class="col-auto ml-5">
             <label for="wb" class="col-form-label">WB</label>
@@ -373,7 +375,7 @@
             <div class="form-group row">
                 <label for="siteName" class="col-sm-2 col-form-label">Site Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control bg-transparent" id="siteName" name="site_name" placeholder="Enter Site Name">
+                    <input type="text" class="form-control bg-transparent" id="siteName" name="site_name" readonly>
                 </div>
             </div>
             <div class="form-group row">
@@ -385,13 +387,13 @@
             <div class="form-group row">
                 <label for="panNo" class="col-sm-2 col-form-label">PAN No.</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control bg-transparent" id="panNo" name="pan_no" placeholder="Enter PAN No.">
+                    <input type="text" class="form-control bg-transparent" id="panNo" name="pan_no" placeholder="Enter PAN No." value="" readonly>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="gstinNo" class="col-sm-2 col-form-label">GSTIN No.</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control bg-transparent" id="gstinNo" name="gstin_no" placeholder="Enter GSTIN No.">
+                    <input type="text" class="form-control bg-transparent" id="gstinNo" name="gstin_no" placeholder="Enter GSTIN No." value="" readonly>
                 </div>
             </div>
             <div class="form-group row">
@@ -401,10 +403,12 @@
             </div>
             </div>
         </div>
+    
         <div class="mt-4">
             <p class="font-weight-bold">Saved Successfully : Press F3 For New Entry</p>
-            <button type="button" class="btn btn-success" id="newBtn" onclick="newEntry()">New</button>
             <button type="submit" class="btn btn-primary ml-3" id="saveBtn" name="save">Save</button>
+        </form>
+            <button type="button" class="btn btn-success ml-2" id="newBtn" onclick="newEntry()">New</button>
             <button class="btn btn-info ml-3" id="printBtn" onclick="printData()">Print</button>
             <button type="button" class="btn btn-danger ml-3" id="cancelBtn" onclick="clearFields()">Cancel</button>
             <button class="btn btn-warning ml-3" id="findBtn" onclick="openSearchBox()">Find</button>
@@ -420,13 +424,37 @@
                 <span id="currentDate" style="margin-right: 30px;"></span>
             </p>
         </footer>
-    </form>
+    
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="index.js"></script>
     <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+        // Check if values are already stored in local storage
+        const storedPan = localStorage.getItem("pan_no");
+        const storedGstin = localStorage.getItem("gstin_no");
+
+        // If values are not stored, set default values and store them
+        if (!storedPan) {
+            localStorage.setItem("pan_no", "AAMFH6820P");
+        }
+        if (!storedGstin) {
+            localStorage.setItem("gstin_no", "27AAMFH6820P1ZQ");
+        }
+
+        // Set the input values from local storage
+        document.getElementById("panNo").value = localStorage.getItem("pan_no");
+        document.getElementById("gstinNo").value = localStorage.getItem("gstin_no");
+    });
+
+        const selectedSite = localStorage.getItem('selectedSite');
+        if (selectedSite) {
+            document.getElementById('siteName').value = selectedSite; // Set the site name in the input field
+        }
+
         function calculateNetWeight() {
             // Get the values from the input fields
             const grossWeight = parseFloat(document.getElementById('grossWeightInput').value) || 0;
@@ -519,16 +547,19 @@
             }, 600);
         }
 
-        document.getElementById('destination').onclick = function() {
-                window.location.href = 'destination.html';
-        };
-        document.getElementById('transport').onclick = function() {
-              window.location.href = 'transport.html';
-        };
-        document.getElementById('okBtn').onclick = function() {
-            window.location.href = 'supplier.html';
-        };
-
+        function clearFields() {
+    // Clear all input fields except PAN No. and GSTIN No.
+    const inputs = document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="time"], textarea');
+    inputs.forEach(input => {
+        if (input.id !== 'panNo' && input.id !== 'gstinNo' && input.id !== 'siteName') {
+            input.value = ''; // Clear the value
+        }
+    });
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+        select.selectedIndex = 0; // Reset to the first option
+    });
+}
 </script>
 </body>
 </html>

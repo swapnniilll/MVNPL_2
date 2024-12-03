@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Master</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e0f7fa; /* Light background color */
+        }
+        .box {
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            background-color: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 50px;
+            border-radius: 10px;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .heading {
+            text-align: center;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="box">
+        <h1 class="heading font-weight-bold">Grade Master</h1>
+        <div class="form-group">
+            <label for="gradeInput">Grade:</label>
+            <input type="text" class="form-control" id="gradeInput" placeholder="Enter Grade">
+        </div>
+        <button class="btn btn-success" id="saveButton">Save</button>
+        <button class="btn btn-danger" id="deleteButton">Delete</button>
+        <button class="btn btn-secondary" id="closeButton">Close</button>
+
+        <div class="form-group mt-3">
+            <label for="gradeSelect">Select on Grade name to update or delete:</label>
+            <select class="form-control" id="gradeSelect">
+                <option value="">--Select a Grade--</option>
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="searchInput">Search:</label>
+            <input type="text" class="form-control" id="searchInput" placeholder="Search Grade">
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    const gradeInput = document.getElementById('gradeInput');
+    const gradeSelect = document.getElementById('gradeSelect');
+    const saveButton = document.getElementById('saveButton');
+    const deleteButton = document.getElementById('deleteButton');
+    const closeButton = document.getElementById('closeButton');
+    const searchInput = document.getElementById('searchInput');
+
+    
+    let grades = [];
+
+    // Function to add grade to dropdown
+    saveButton.addEventListener('click', () => {
+        const gradeValue = gradeInput.value.trim();
+        if (gradeValue) {
+            
+            grades.push(gradeValue);
+            
+            
+            const option = document.createElement('option');
+            option.value = gradeValue;
+            option.textContent = gradeValue;
+            gradeSelect.appendChild(option);
+            
+            
+            gradeInput.value = '';
+        }
+    });
+
+    // Function to delete selected grade
+    deleteButton.addEventListener('click', () => {
+        const selectedGrade = gradeSelect.value;
+        if (selectedGrade) {
+           
+            grades = grades.filter(grade => grade !== selectedGrade);
+
+            
+            const options = gradeSelect.options;
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].value === selectedGrade) {
+                    gradeSelect.remove(i);
+                    break;
+                }
+            }
+            gradeInput.value = ''; 
+        }
+    });
+
+    // Function to close the box (hide)
+    closeButton.addEventListener('click', () => {
+        const box = document.querySelector('.box');
+        box.style.display = 'none';
+    });
+
+    // Function to search for grade
+    searchInput.addEventListener('input', () => {
+        const searchValue = searchInput.value.toLowerCase();
+        
+        // Clear the dropdown
+        gradeSelect.innerHTML = '<option value="">--Select a Grade--</option>'; // Reset dropdown
+
+        // Filter grades based on search input
+        grades.forEach(grade => {
+            if (grade.toLowerCase().includes(searchValue)) {
+                const option = document.createElement('option');
+                option.value = grade;
+                option.textContent = grade;
+                gradeSelect.appendChild(option);
+            }
+        });
+
+        // If a match is found, set the grade input to the first match
+        if (grades.some(grade => grade.toLowerCase().includes(searchValue))) {
+            gradeInput.value = grades.find(grade => grade.toLowerCase().includes(searchValue));
+        } else {
+            gradeInput.value = '';
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Report</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+             body{
+                background-color: #e0f7fa;
+             }
+
+        .report-box {
+            border: 3px solid #007bff; /* Bootstrap primary color */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5 font-weight-bold">Time Difference Report</h1>
+        <div class="form-group">
+            <label for="siteName">Site Name</label>
+            <input type="text" class="form-control bg-transparent" id="siteName" readonly>
+        </div>
+        <div class="form-group">
+            <label for="reportDropdown">IN/OUT</label>
+            <select class="form-control bg-transparent" id="reportDropdown">
+                <option value="" disabled selected>Select a report type</option>
+                <option value="report1">IN</option>
+                <option value="report2">OUT</option>
+                
+            </select>
+        </div>
+        <div class="report-box">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="fromDate">From Date</label>
+                    <input type="date" class="form-control bg-transparent" id="fromDate">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="toDate">To Date</label>
+                    <input type="date" class="form-control bg-transparent" id="toDate">
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" id="okBtn">OK</button>
+        </div>
+    </div>
+
+    <script>
+         const selectedSite = localStorage.getItem('selectedSite');
+        if (selectedSite) {
+            document.getElementById('siteName').value = selectedSite; // Set the site name in the input field
+        }
+
+
+        document.getElementById('okBtn').onclick = function() {
+            const reportType = document.getElementById('reportDropdown').value;
+            const fromDate = document.getElementById('fromDate').value;
+            const toDate = document.getElementById('toDate').value;
+
+            if (!reportType || !fromDate || !toDate) {
+                alert('Please fill in all fields in the Product Report section.');
+            } else {
+                alert('Report generated successfully!'); // Placeholder for actual functionality
+            }
+        };
+
+        document.getElementById('closeBtn').onclick = function() {
+            if (confirm('Are you sure you want to close?')) {
+                window.close(); // This will only work if the page was opened via window.open()
+            }
+ };
+
+        document.getElementById('printReportBtn').onclick = function() {
+            // Placeholder for print functionality
+            alert('Print Excel Report functionality is not implemented yet.');
+        };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

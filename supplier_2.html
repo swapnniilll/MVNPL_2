@@ -6,6 +6,9 @@
     <title>Customer Report</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+         body {
+            background-color: #e0f7fa; /* Light background color */
+        }
         .report-box {
             border: 3px solid #007bff; /* Bootstrap primary color */
             padding: 20px;
@@ -19,20 +22,11 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="font-weight-bold text-center">Transporter Report</h1>
-        <div class="form-group">
-            <label for="inout">IN/OUT</label>
-            <select class="form-control w-25" id="inout">
-                <option value="" disabled selected>Select</option>
-                <option value="IN">IN</option>
-                <option value="OUT">OUT</option>
-            </select>
-        </div>
-
+        <h1 class="text-xl-center mb-5 font-weight-bold">Supplier Report</h1>
         <div class="report-box">
             <div class="form-group">
-                <label for="reportDropdown">Select Report Type</label>
-                <select class="form-control" id="reportDropdown">
+                <label for="reportDropdown">Supplier Name</label>
+                <select class="form-control bg-transparent" id="reportDropdown">
                     <option value="" disabled selected>Select a report type</option>
                     <option value="report1">Report 1</option>
                     <option value="report2">Report 2</option>
@@ -42,11 +36,11 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="fromDate">From Date</label>
-                    <input type="date" class="form-control" id="fromDate">
+                    <input type="date" class="form-control bg-transparent" id="fromDate">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="toDate">To Date</label>
-                    <input type="date" class="form-control" id="toDate">
+                    <input type="date" class="form-control bg-transparent" id="toDate">
                 </div>
             </div>
             <button type="button" class="btn btn-primary" id="okBtn">OK</button>
@@ -54,36 +48,36 @@
 
         <div class="form-group">
             <label for="siteName">Site Name</label>
-            <input type="text" class="form-control" id="siteName" readonly>
+            <input type="text" class="form-control bg-transparent" id="siteName" readonly>
         </div>
 
         <div class="form-group">
             <label for="reportDetails">Report Details</label>
-            <textarea class="form-control textarea-large" id="reportDetails" placeholder="Enter report details..."></textarea>
+            <textarea class="form-control textarea-large bg-transparent" id="reportDetails" placeholder="Enter report details..."></textarea>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="totalEntry">Total Entry</label>
-                <input type="number" class="form-control" id="totalEntry">
+                <input type="number" class="form-control bg-transparent" id="totalEntry">
             </div>
             <div class="form-group col-md-3">
                 <label for="gross">Gross</label>
-                <input type="number" class="form-control" id="gross">
+                <input type="number" class="form-control bg-transparent" id="gross">
             </div>
             <div class="form-group col-md-3">
                 <label for="tare">Tare</label>
-                <input type="number" class="form-control" id="tare">
+                <input type="number" class="form-control bg-transparent" id="tare">
             </div>
             <div class="form-group col-md-3">
                 <label for="net">Net</label>
-                <input type="number" class="form-control" id="net">
+                <input type="number" class="form-control bg-transparent" id="net">
             </div>
         </div>
 
         <div class="form-group">
             <label for="total">Total</label>
-            <input type="number" class="form-control" id="total">
+            <input type="number" class="form-control bg-transparent" id="total">
         </div>
 
         <div class="d-flex justify-content-between">

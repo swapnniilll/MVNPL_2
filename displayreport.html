@@ -6,6 +6,9 @@
     <title>Report Form</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            background-color: #e0f7fa; /* Light background color */
+        }
         .border-box {
             border: 3px solid #007bff; /* Bootstrap primary color */
             padding: 20px;
@@ -16,11 +19,11 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center font-weight-bold mb-5">New Report</h1>
+        <h1 class="text-center font-weight-bold mb-5">Report</h1>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inout">IN/OUT:</label>
-                <select class="form-control" id="inout">
+                <select class="form-control bg-transparent" id="inout">
                     <option value="">Select</option>
                     <option value="in">In</option>
                     <option value="out">Out</option>
@@ -28,7 +31,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="sitename">Site Name:</label>
-                <input type="text" class="form-control" id="siteName" readonly>
+                <input type="text" class="form-control bg-transparent" id="siteName" readonly>
             </div>
         </div>
 
@@ -36,7 +39,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="doNo">DO No.:</label>
-                    <select class="form-control" id="doNo">
+                    <select class="form-control bg-transparent" id="doNo">
                         <option value="">Select</option>
                         <option value="do1">DO No. 1</option>
                         <option value="do2">DO No. 2</option>
@@ -45,7 +48,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="username">Username:</label>
-                    <select class="form-control" id="username">
+                    <select class="form-control bg-transparent" id="username">
                         <option value="">Select</option>
                         <option value="user1">User  1</option>
                         <option value="user2">User  2</option>
@@ -54,7 +57,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="truckNo">Truck No.:</label>
-                    <input type="text" class="form-control" id="truckNo">
+                    <input type="text" class="form-control bg-transparent" id="truckNo">
                 </div>
             </div>
 
@@ -62,14 +65,14 @@
                 <div class="form-group col-md-4">
                     <label for="fromTicket">From Ticket No.:</label>
                     <div class="d-flex align-items-center">
-                        <input type="text" class="form-control w-50 mr-2" id="fromTicket" placeholder="From">
+                        <input type="text" class="form-control w-50 mr-2 bg-transparent" id="fromTicket" placeholder="From">
                         <span class="mx-2">To</span>
-                        <input type="text" class="form-control w-50" id="toTicket" placeholder="To">
+                        <input type="text" class="form-control w-50 bg-transparent" id="toTicket" placeholder="To">
                     </div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="supplier">Supplier:</label>
-                    <select class="form-control" id="supplier">
+                    <select class="form-control bg-transparent" id="supplier">
                         <option value="">Select</option>
                         <option value="user1">User  1</option>
                         <option value="user2">User  2</option>
@@ -78,7 +81,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="customer">Customer:</label>
-                    <select class="form-control" id="customer">
+                    <select class="form-control bg-transparent" id="customer">
                         <option value="">Select</option>
                         <option value="user1">User  1</option>
                         <option value="user2">User  2</option>
@@ -90,7 +93,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="product">Select Product:</label>
-                    <select class="form-control" id="product">
+                    <select class="form-control bg-transparent" id="product">
                         <option value="">Select</option>
                         <option value="user1">User  1</option>
                         <option value="user2">User  2</option>
@@ -99,7 +102,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="transporter">Transporter:</label>
-                    <select class="form-control" id="transporter">
+                    <select class="form-control bg-transparent" id="transporter">
                         <option value="">Select</option>
                         <option value="user1">User  1</option>
                         <option value="user2">User  2</option>
@@ -111,19 +114,19 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="fromDate">From Date</label>
-                    <input type="date" class="form-control" id="fromDate">
+                    <input type="date" class="form-control bg-transparent" id="fromDate">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="toDate">To Date</label>
-                    <input type="date" class="form-control" id="toDate">
+                    <input type="date" class="form-control bg-transparent" id="toDate">
                 </div>
                 <div class="input-group-append col-md-4">
-                    <button class="btn btn-outline-primary h-50 w-50 mt-4 ml-5" type="button">Ok</button>
+                    <button class="btn btn-outline-primary h-50 w-50 mt-4 ml-5" type="button">Close</button>
                 </div>
             </div>
         </div>
         <div class="form-group col-md-12">
-            <textarea class="form-control" id="comments" rows="10" placeholder="Enter your comments here..."></textarea>
+            <textarea class="form-control bg-transparent" id="comments" rows="10" placeholder="Enter your comments here..."></textarea>
         </div>
         <div class="form-row">
         <div class="form-group col-md-6">
@@ -131,7 +134,7 @@
         </div>
         <div class="input-group-append col-md-6">
             <label class=" mt-4">Total</label>
-            <input type="text" class="form-control w-50 ml-4 mt-3" id="total">
+            <input type="text" class="form-control w-50 ml-4 mt-3 bg-transparent" id="total">
         </div>
     </div>
     </div>

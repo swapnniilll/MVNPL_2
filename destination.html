@@ -4,64 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Destination Master</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Custom style for a larger dropdown */
+        body {
+            background-color: #e0f7fa; /* Light background color */
+        }
+        .box {
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            background-color: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 50px;
+            border-radius: 10px;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .heading {
+            text-align: center;
+            color: #4CAF50;
+        }
         .custom-select {
             height: 50px; /* Adjust height as needed */
             overflow-y: auto; /* Enable scrolling if options exceed height */
         }
-        html, body{
-        font-size: 14px;
-        background-color: #e0f7fa;
-    }
     </style>
 </head>
 <body>
 
-<div class="container mt-5">
-    <h1 class="text-center font-weight-bolder">Destination Master</h1>
-
-    <div class="form-group">
-        <label for="destination">Destination</label>
-        <input type="text" class="form-control bg-transparent" id="destination" placeholder="Enter destination">
-    </div>
-
-    <div class="form-group">
-        <label for="description">Description</label>
-        <select class="custom-select bg-transparent" id="description">
-            <option selected disabled>Select description</option>
-            <option value="Description 1">Description 1</option>
-            <option value="Description 2">Description 2</option>
-            <option value="Description 3">Description 3</option>
-            <option value="Description 4">Description 4</option>
-            <option value="Description 5">Description 5</option>
-            <option value="Description 6">Description 6</option>
-            <option value="Description 7">Description 7</option>
-            <option value="Description 8">Description 8</option>
-            <option value="Description 9">Description 9</option>
-            <option value="Description 10">Description 10</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="search">Search</label>
-        <input type="text" class="form-control bg-transparent" id="search" placeholder="Search...">
-    </div>
-
-    <div class="text-center">
-        <button class="btn btn-primary" onclick="saveDestination()">Save</button>
-        <button class="btn btn-danger" onclick="deleteDestination()">Delete</button>
-        <button class="btn btn-secondary" onclick="closeForm()">Close</button>
+<div class="container">
+    <div class="box">
+        <h1 class="heading font-weight-bold">Destination Master</h1>
+        <div class="form-group">
+            <label for="destination">Destination</label>
+            <input type="text" class="form-control bg-transparent" id="destination" placeholder="Enter destination">
+        </div>
+    
+        <div class="form-group">
+            <label for="description">Description</label>
+            <select class="custom-select bg-transparent" id="description">
+                <option selected disabled>Select description</option>
+                <option value="Description 1">Description 1</option>
+                <option value="Description 2">Description 2</option>
+                <option value="Description 3">Description 3</option>
+                <option value="Description 4">Description 4</option>
+                <option value="Description 5">Description 5</option>
+                <option value="Description 6">Description 6</option>
+                <option value="Description 7">Description 7</option>
+                <option value="Description 8">Description 8</option>
+                <option value="Description 9">Description 9</option>
+                <option value="Description 10">Description 10</option>
+            </select>
+        </div>
+    
+        <div class="form-group">
+            <label for="search">Search</label>
+            <input type="text" class="form-control bg-transparent" id="search" placeholder="Search...">
+        </div>
+    
+        <div class="text-center">
+            <button class="btn btn-primary" onclick="saveDestination()">Save</button>
+            <button class="btn btn-danger" onclick="deleteDestination()">Delete</button>
+            <button class="btn btn-secondary" onclick="closeForm()">Close</button>
+        </div>
     </div>
 </div>
 
-<!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 <script>
     function saveDestination() {
         const destination = document.getElementById('destination').value;
@@ -81,6 +95,5 @@
         }
     }
 </script>
-
 </body>
 </html>
