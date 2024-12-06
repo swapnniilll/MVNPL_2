@@ -9,14 +9,16 @@
         html, body {
             font-size: 14px;
             background-color: #e0f7fa;
-            height: 100vh; /* Set height to full viewport */
-            margin: 0; /* Remove default margin */
+            height: 100vh; 
+            margin: 0;
         }
         .container {
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            height: 100%; /* Full height of the viewport */
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100%;
+            position: relative; 
         }
         .hover-box {
             transition: transform 0.3s ease, background-color 0.3s ease;
@@ -25,15 +27,27 @@
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 600px;
+            margin-top: 20px; 
         }
         .hover-box:hover {
             transform: scale(1.05);
-            background-color: #b2ebf2; /* Change background color on hover */
+            background-color: #b2ebf2; 
+        }
+        .marquee {
+            position: absolute; 
+            top: 20px; 
+            white-space: nowrap; 
+            animation: marquee 10s linear infinite; 
+        }
+        @keyframes marquee {
+            0% { transform: translateX(-100%); } 
+            100% { transform: translateX(100%); }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="marquee"><h1 class="font-italic font-weight-bold">HIND MAHA MINERAL LLP</h1></div>
         <div class="hover-box">
             <div class="form-group">
                 <label for="siteSelect" class="font-weight-bold">Select Site</label>
@@ -58,7 +72,6 @@
         document.getElementById('okBtn').onclick = function() {
             const selectedSite = document.getElementById('siteSelect').value;
             if (selectedSite) {
-                // Store the selected site name in localStorage
                 localStorage.setItem('selectedSite', selectedSite);
                 window.location.href = 'login.html';
             } else {

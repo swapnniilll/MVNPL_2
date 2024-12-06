@@ -33,23 +33,29 @@
                 </select>
             </div>
         </div>
-        <div class="report-box">
-            <div class="form-group">
-                <label for="truckNo">Truck No.</label>
-                <input type="text" class="form-control bg-transparent" id="truckNo" placeholder="Enter Truck No.">
+                
+            <div class="report-box">
+                <form action="truck.php" method="POST" id="reportForm">
+                    <div class="form-group">
+                        <label for="truckNo">Truck No.</label>
+                        <input type="text" class="form-control bg-transparent" id="truckNo" name="truckNo" placeholder="Enter Truck No." required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="fromDate">From Date</label>
+                            <input type="date" class="form-control bg-transparent" id="fromDate" name="fromDate" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="toDate">To Date</label>
+                            <input type="date" class="form-control bg-transparent" id="toDate" name="toDate" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">OK</button>
+                </form>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="fromDate">From Date</label>
-                    <input type="date" class="form-control bg-transparent" id="fromDate">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="toDate">To Date</label>
-                    <input type="date" class="form-control bg-transparent" id="toDate">
-                </div>
-            </div>
-            <button type="button" class="btn btn-primary" id="okBtn">OK</button>
-        </div>
+                
+
+        
 
         <div class="form-group">
             <label for="siteName">Site Name</label>
@@ -68,6 +74,8 @@
     </div>
 
     <script>
+    // Use jQuery without the $ sign
+    
         const selectedSite = localStorage.getItem('selectedSite');
         if (selectedSite) {
             document.getElementById('siteName').value = selectedSite; // Set the site name in the input field
@@ -96,7 +104,7 @@
             alert('Print Excel Report functionality is not implemented yet.');
         };
     </script>
-
+      
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

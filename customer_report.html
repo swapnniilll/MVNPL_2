@@ -22,7 +22,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-xl-center mb-5 font-weight-bold">Customer Report</h1>
+        <h1 class="text-center mb-5 font-weight-bold">Customer Report</h1>
         <div class="report-box">
             <div class="form-group">
                 <label for="reportDropdown">Select Report Type</label>
@@ -46,7 +46,7 @@
             <button type="button" class="btn btn-primary" id="okBtn">OK</button>
         </div>
 
-        <div class="form-group">
+        <div class=" form-group">
             <label for="siteName">Site Name</label>
             <input type="text" class="form-control bg-transparent" id="siteName" placeholder="Enter Site Name">
         </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="net">Net</label>
-                <input type="number" class="form-control bg-transparent" id="net">
+                <input type="number" class="form-control bg-transparent" id="net" readonly>
             </div>
         </div>
 
@@ -114,6 +114,18 @@
             // Placeholder for print functionality
             alert('Print Excel Report functionality is not implemented yet.');
         };
+
+        // Function to calculate net weight
+        function calculateNetWeight() {
+            const grossWeight = parseFloat(document.getElementById('gross').value) || 0;
+            const tareWeight = parseFloat(document.getElementById('tare').value) || 0;
+            const netWeight = grossWeight - tareWeight;
+            document.getElementById('net').value = netWeight.toFixed(2); // Set net weight with 2 decimal places
+        }
+
+        // Add event listeners to gross and tare input fields
+        document.getElementById('gross').addEventListener('input', calculateNetWeight);
+        document.getElementById('tare').addEventListener('input', calculateNetWeight);
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -1,3 +1,4 @@
+
 function printData() {
     // Collect data from the form
     const panNo = document.getElementById('panNo').value;

@@ -38,62 +38,146 @@
 <div class="container">
     <div class="box">
         <h1 class="heading font-weight-bold">Destination Master</h1>
-        <div class="form-group">
-            <label for="destination">Destination</label>
-            <input type="text" class="form-control bg-transparent" id="destination" placeholder="Enter destination">
-        </div>
-    
-        <div class="form-group">
-            <label for="description">Description</label>
-            <select class="custom-select bg-transparent" id="description">
-                <option selected disabled>Select description</option>
-                <option value="Description 1">Description 1</option>
-                <option value="Description 2">Description 2</option>
-                <option value="Description 3">Description 3</option>
-                <option value="Description 4">Description 4</option>
-                <option value="Description 5">Description 5</option>
-                <option value="Description 6">Description 6</option>
-                <option value="Description 7">Description 7</option>
-                <option value="Description 8">Description 8</option>
-                <option value="Description 9">Description 9</option>
-                <option value="Description 10">Description 10</option>
+        <form action="destination_master.php" method="post">
+            <div class="form-group">
+                <label for="gradeInput">Destination:</label>
+                <input type="text" class="form-control" id="gradeInput" name="destination" placeholder="Enter Source">
+            </div>
+        <div class="form-group mt-3">
+            <label for="gradeSelect">Select on Destination name to update or delete:</label>
+            <select class="form-control" id="gradeSelect">
+                <option value="">--Select a Destination--</option>
             </select>
         </div>
-    
-        <div class="form-group">
-            <label for="search">Search</label>
-            <input type="text" class="form-control bg-transparent" id="search" placeholder="Search...">
+
+        <div class="form-group mt-3">
+            <label for="searchInput">Search:</label>
+            <input type="text" class="form-control" id="searchInput" placeholder="Search Destination">
         </div>
-    
-        <div class="text-center">
-            <button class="btn btn-primary" onclick="saveDestination()">Save</button>
-            <button class="btn btn-danger" onclick="deleteDestination()">Delete</button>
-            <button class="btn btn-secondary" onclick="closeForm()">Close</button>
-        </div>
+            <button class="btn btn-success" id="saveButton">Save</button>
+            <button class="btn btn-danger" id="deleteButton">Delete</button>
+            <button class="btn btn-secondary" id="closeButton">Close</button>
+        </form>
     </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    function saveDestination() {
-        const destination = document.getElementById('destination').value;
-        const description = document.getElementById('description').value;
-        alert(`Saved Destination: ${destination}\nDescription: ${description}`);
-    }
+    <script>
+    const gradeInput = document.getElementById('gradeInput');
+    const gradeSelect = document.getElementById('gradeSelect');
+    const saveButton = document.getElementById('saveButton');
+    const deleteButton = document.getElementById('deleteButton');
+    const closeButton = document.getElementById('closeButton');
+    const searchInput = document.getElementById('searchInput');
+    let grades = []; // Initialize grades array
 
-    function deleteDestination() {
-        document.getElementById('destination').value = '';
-        document.getElementById('description').selectedIndex = 0; // Reset to the first option
-        alert('Destination deleted');
-    }
-
-    function closeForm() {
-        if (confirm('Are you sure you want to close?')) {
-            window.close(); // This will only work if the page was opened via window.open()
+    saveButton.addEventListener('click', (event) => {
+        event.preventDefault(); 
+        const destinationValue = gradeInput.value.trim();
+        if (destinationValue) {
+            fetch('destination_master.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `destination=${encodeURIComponent(destinationValue)}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data); 
+                const option = document.createElement('option');
+                option.value = destinationValue;
+                option.textContent = destinationValue;
+                gradeSelect.appendChild(option);
+                gradeInput.value = ''; 
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
+    });
+
+    deleteButton.addEventListener('click', () => {
+        const selectedDestination = gradeSelect.value;
+        if (selectedDestination) {
+            fetch('destination_master.php', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `destination=${encodeURIComponent(selectedDestination)}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data); // Show success message
+                // Remove the deleted source from the dropdown
+                const options = gradeSelect.options;
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].value === selectedDestination) {
+                        gradeSelect.remove(i);
+                        break;
+                    }
+                }
+                gradeInput.value = ''; // Clear input
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        } else {
+            alert("Please select a destination to delete.");
+        }
+    });
+
+    closeButton.addEventListener('click', () => {
+        const box = document.querySelector('.box');
+        box.style.display = 'none';
+    });
+
+    searchInput.addEventListener('input', () => {
+    const searchValue = searchInput.value.toLowerCase();
+    gradeSelect.innerHTML = '<option value="">--Select a Source--</option>'; 
+
+    // Filter sources based on search input
+    grades.forEach(destination => {
+        if (destination.toLowerCase().includes(searchValue)) {
+            const option = document.createElement('option');
+            option.value = destination;
+            option.textContent = destination;
+            gradeSelect.appendChild(option);
+        }
+    });
+
+    // If a match is found, set the grade input to the first match
+    const matchingDestination = grades.find(destination => destination.toLowerCase().includes(searchValue));
+    if (matchingDestination) {
+        gradeInput.value = matchingDestination; // Set the input to the matching source
+    } else {
+        gradeInput.value = ''; // Clear input if no match
     }
-</script>
+});
+
+    function loadDestination() {
+    fetch('destination_master.php')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(destination => {
+                const option = document.createElement('option');
+                option.value = destination.destination;
+                option.textContent = destination.destination;
+                gradeSelect.appendChild(option);
+                grades.push(destination.destination); // Store in grades array
+            });
+        })
+        .catch(error => {
+            console.error('Error loading destination:', error);
+        });
+}
+
+    // Load sources on page load
+    window.onload = loadDestination;
+
+    </script>
 </body>
 </html>

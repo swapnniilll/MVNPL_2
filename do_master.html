@@ -86,7 +86,7 @@
                         <li><a class="dropdown-item" href="source_master.html">Source Master</a></li>
                         <li><a class="dropdown-item" href="material_master.html">Material Master</a></li>
                         <li><a class="dropdown-item" href="grade_master.html">Grade Master</a></li>
-                        <li><a class="dropdown-item" href="supplier.html">Supplier Master</a></li>
+                        <li><a class="dropdown-item" href="supplier.php">Supplier Master</a></li>
                         <li><a class="dropdown-item" href="transport.html">Transport Master</a></li>
                         <li><a class="dropdown-item" href="destination.html">Destination Master</a></li>
                     </ul>
@@ -98,10 +98,10 @@
 <div class="container">
     <div class="box" id="doMasterBox">
         <h1 class="heading font-weight-bold">Do Master</h1>
-        
+        <form action="domaster.php" method="post">
         <div class="form-group">
             <label for="inOutSelect">IN/OUT:</label>
-            <select class="form-control" id="inOutSelect">
+            <select class="form-control" id="inOutSelect" name="in_out">
                 <option value="">--Select--</option>
                 <option value="IN">IN</option>
                 <option value="OUT">OUT</option>
@@ -109,23 +109,22 @@
         </div>
 
         <div class="form-group">
-            <label for="doNoSelect">DO No.:</label>
-            <select class="form-control" id="doNoSelect">
-                <option value="">--Select DO No.--</option>
-                <option value="DO001">DO 001</option>
-                <option value="DO002">DO 002</option>
-                <option value="DO003">DO 003</option>
-            </select>
+            
+            <label for="doNoInput">DO No.:</label>
+            <input type="text" class="form-control" id="doNoInput" name="do_no" placeholder="Enter DO No." 
+                   pattern="^[A-Za-z0-9]+$" title="Only letters and numbers are allowed." required>
+            <small class="form-text text-muted">Only letters and numbers are allowed.</small>
+        
         </div>
 
         <div class="form-group">
             <label for="doDateInput">DO Date:</label>
-            <input type="date" class="form-control" id="doDateInput">
+            <input type="date" class="form-control" id="doDateInput" name="do_date">
         </div>
 
         <div class="form-group">
             <label for="materialSelect">Material:</label>
-            <select class="form-control" id="materialSelect">
+            <select class="form-control" id="materialSelect" name="material">
                 <option value="">--Select Material--</option>
                 <option value="Material1">Material 1</option>
                 <option value="Material2">Material 2</option>
@@ -134,7 +133,7 @@
 
         <div class="form-group">
             <label for="gradeSelect">Grade:</label>
-            <select class="form-control" id="gradeSelect">
+            <select class="form-control" id="gradeSelect" name="grade">
                 <option value="">--Select Grade--</option>
                 <option value="Grade1">Grade 1</option>
                 <option value="Grade2">Grade 2</option>
@@ -143,12 +142,12 @@
 
         <div class="form-group">
             <label for="qtyInput">QTY:</label>
-            <input type="number" class="form-control" id=" qtyInput" placeholder="Enter Quantity">
+            <input type="number" class="form-control" id=" qtyInput" name="qty" placeholder="Enter Quantity">
         </div>
 
         <div class="form-group">
             <label for="sourceSelect">Source:</label>
-            <select class="form-control" id="sourceSelect">
+            <select class="form-control" id="sourceSelect" name="source">
                 <option value="">--Select Source--</option>
                 <option value="Source1">Source 1</option>
                 <option value="Source2">Source 2</option>
@@ -157,7 +156,7 @@
 
         <div class="form-group">
             <label for="partySelect">Party:</label>
-            <select class="form-control" id="partySelect">
+            <select class="form-control" id="partySelect" name="party">
                 <option value="">--Select Party--</option>
                 <option value="Party1">Party 1</option>
                 <option value="Party2">Party 2</option>
@@ -166,20 +165,30 @@
 
         <div class="form-group">
             <label for="validUptoInput">DO Valid Upto:</label>
-            <input type="date" class="form-control" id="validUptoInput">
+            <input type="date" class="form-control" id="validUptoInput" name="do_valid_upto">
         </div>
 
         <div class="form-group">
             <label for="siteSelect">Select Site:</label>
-            <select class="form-control" id="siteSelect">
+            <select class="form-control" id="siteSelect" name="select_site">
                 <option value="">--Select Site--</option>
-                <option value="Site1">Site 1</option>
-                <option value="Site2">Site 2</option>
+                <option value="" disabled selected>Select a Site</option>
+                    <option value="Ghuggus">Ghuggus</option>
+                    <option value="Gondegaon">Gondegaon</option>
+                    <option value="Majri">Majri</option>
+                    <option value="Pimpalgaon">Pimpalgaon</option>
+                    <option value="Pimpalgaon Siding">Pimpalgaon Siding</option>
+                    <option value="Rajur">Rajur</option>
+                    <option value="Sasti">Sasti</option>
+                    <option value="Tadali">Tadali</option>
+                    <option value="Wani">Wani</option>
             </select>
         </div>
 
         <button class="btn btn-success" id="saveButton">Save</button>
+    
         <button class="btn btn-secondary" id="newButton">New</button>
+    </form>
     </div>
 </div>
 
@@ -187,6 +196,51 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+
+document.getElementById('saveButton').addEventListener('click', function() {
+
+    const formData = {
+        in_out: inOutSelect.value,
+        do_no: doNoInput.value,
+        do_date: doDateInput.value,
+        material: materialSelect.value,
+        grade: gradeSelect.value,
+        qty: qtyInput.value,
+        source: sourceSelect.value,
+        party: partySelect.value,
+        do_valid_upto: validUptoInput.value,
+        select_site: siteSelect.value
+    };
+
+    
+    fetch('domaster.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data); 
+        newButton.click(); 
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+
+document.getElementById('doNoInput').addEventListener('input', function() {
+    const input = this.value;
+    const regex = /^[A-Za-z0-9]*$/; 
+    if (!regex.test(input)) {
+        this.setCustomValidity('Only letters and numbers are allowed.');
+    } else {
+        this.setCustomValidity('');
+    }
+});
+
     const inOutSelect = document.getElementById('inOutSelect');
     const doNoSelect = document.getElementById('doNoSelect');
     const doDateInput = document.getElementById('doDateInput');
